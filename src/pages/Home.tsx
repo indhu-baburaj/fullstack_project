@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -54,18 +55,18 @@ const LoggedOutHome = () => {
   ];
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-12 sm:space-y-16">
       {/* Hero Section */}
-      <section className="text-center py-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl text-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Welcome to EduVerse</h1>
-          <p className="text-xl md:text-2xl mb-8 leading-relaxed">
+      <section className="text-center py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg sm:rounded-2xl text-white mx-2 sm:mx-0">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">Welcome to EduVerse</h1>
+          <p className="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 leading-relaxed px-2">
             Your gateway to quality education. Learn from industry experts, collaborate with peers, 
             and advance your career with our comprehensive learning platform.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
             <Link to="/courses">
-              <Button size="lg" variant="secondary" className="min-w-[160px]">
+              <Button size="lg" variant="secondary" className="w-full sm:w-auto min-w-[160px]">
                 Explore Courses
               </Button>
             </Link>
@@ -73,7 +74,7 @@ const LoggedOutHome = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600 min-w-[160px]"
+                className="w-full sm:w-auto bg-transparent border-white text-white hover:bg-white hover:text-blue-600 min-w-[160px]"
               >
                 Start Learning
               </Button>
@@ -83,52 +84,52 @@ const LoggedOutHome = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 px-2 sm:px-0">
         {stats.map((stat, index) => (
           <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-            <CardContent className="p-8">
-              <stat.icon className="h-12 w-12 mx-auto mb-4 text-primary" />
-              <div className="text-3xl font-bold mb-2">{stat.value}</div>
-              <div className="text-gray-600">{stat.label}</div>
+            <CardContent className="p-6 sm:p-8">
+              <stat.icon className="h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-3 sm:mb-4 text-primary" />
+              <div className="text-2xl sm:text-3xl font-bold mb-2">{stat.value}</div>
+              <div className="text-sm sm:text-base text-gray-600">{stat.label}</div>
             </CardContent>
           </Card>
         ))}
       </section>
 
       {/* Featured Courses */}
-      <section>
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-          <h2 className="text-3xl font-bold">Featured Courses</h2>
+      <section className="px-2 sm:px-0">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4">
+          <h2 className="text-2xl sm:text-3xl font-bold">Featured Courses</h2>
           <Link to="/courses">
-            <Button variant="outline">View All Courses</Button>
+            <Button variant="outline" size="sm" className="w-full sm:w-auto">View All Courses</Button>
           </Link>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {featuredCourses.map((course) => (
             <Card key={course.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <img 
                 src={course.image} 
                 alt={course.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-40 sm:h-48 object-cover"
               />
-              <CardHeader>
-                <CardTitle className="text-lg line-clamp-2">{course.title}</CardTitle>
-                <CardDescription>By {course.instructor}</CardDescription>
+              <CardHeader className="p-4 sm:p-6">
+                <CardTitle className="text-base sm:text-lg line-clamp-2">{course.title}</CardTitle>
+                <CardDescription className="text-sm">By {course.instructor}</CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex justify-between items-center mb-4 text-sm text-gray-600">
+              <CardContent className="p-4 sm:p-6 pt-0">
+                <div className="flex justify-between items-center mb-3 sm:mb-4 text-xs sm:text-sm text-gray-600">
                   <span>{course.students} students</span>
                   <span className="flex items-center gap-1">
-                    <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    <Star className="h-3 w-3 sm:h-4 sm:w-4 fill-yellow-400 text-yellow-400" />
                     {course.rating}
                   </span>
                 </div>
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-sm text-gray-600">{course.duration}</span>
+                <div className="flex justify-between items-center mb-3 sm:mb-4">
+                  <span className="text-xs sm:text-sm text-gray-600">{course.duration}</span>
                 </div>
                 <Link to="/auth">
-                  <Button className="w-full">Enroll Now</Button>
+                  <Button className="w-full text-sm sm:text-base">Enroll Now</Button>
                 </Link>
               </CardContent>
             </Card>
@@ -137,27 +138,27 @@ const LoggedOutHome = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-gray-50 rounded-2xl p-12 text-center">
-        <h2 className="text-3xl font-bold mb-4">Ready to Start Learning?</h2>
-        <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+      <section className="bg-gray-50 rounded-lg sm:rounded-2xl p-6 sm:p-8 lg:p-12 text-center mx-2 sm:mx-0">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Ready to Start Learning?</h2>
+        <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
           Join thousands of students who are advancing their careers with EduVerse
         </p>
         <Link to="/auth">
-          <Button size="lg">Get Started Today</Button>
+          <Button size="lg" className="w-full sm:w-auto">Get Started Today</Button>
         </Link>
         
         {/* Login Options for Teachers and Admins */}
-        <div className="mt-8 pt-6 border-t border-gray-200">
-          <p className="text-sm text-gray-500 mb-4">Already have an account?</p>
-          <div className="flex justify-center gap-4">
+        <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200">
+          <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">Already have an account?</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <Link to="/teacher-login">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="w-full sm:w-auto">
                 <GraduationCap className="h-4 w-4 mr-2" />
                 Teacher Login
               </Button>
             </Link>
             <Link to="/admin-login">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="w-full sm:w-auto">
                 <Shield className="h-4 w-4 mr-2" />
                 Admin Login
               </Button>
@@ -215,66 +216,66 @@ const LoggedInHome = () => {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* Welcome Header */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl text-white p-8">
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg sm:rounded-2xl text-white p-6 sm:p-8">
         <div>
-          <h1 className="text-3xl font-bold mb-2">Welcome back, {user?.name}!</h1>
-          <p className="text-blue-100">Continue your learning journey</p>
+          <h1 className="text-2xl sm:text-3xl font-bold mb-2">Welcome back, {user?.name}!</h1>
+          <p className="text-blue-100 text-sm sm:text-base">Continue your learning journey</p>
         </div>
       </section>
 
       {/* Quick Stats */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
         <Card>
-          <CardContent className="p-6 text-center">
-            <Book className="h-8 w-8 mx-auto mb-2 text-primary" />
-            <div className="text-2xl font-bold">3</div>
-            <div className="text-sm text-gray-600">Enrolled Courses</div>
+          <CardContent className="p-4 sm:p-6 text-center">
+            <Book className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 text-primary" />
+            <div className="text-xl sm:text-2xl font-bold">3</div>
+            <div className="text-xs sm:text-sm text-gray-600">Enrolled Courses</div>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-6 text-center">
-            <Clock className="h-8 w-8 mx-auto mb-2 text-green-600" />
-            <div className="text-2xl font-bold">24h</div>
-            <div className="text-sm text-gray-600">Hours Learned</div>
+          <CardContent className="p-4 sm:p-6 text-center">
+            <Clock className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 text-green-600" />
+            <div className="text-xl sm:text-2xl font-bold">24h</div>
+            <div className="text-xs sm:text-sm text-gray-600">Hours Learned</div>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-6 text-center">
-            <Award className="h-8 w-8 mx-auto mb-2 text-yellow-600" />
-            <div className="text-2xl font-bold">2</div>
-            <div className="text-sm text-gray-600">Certificates</div>
+          <CardContent className="p-4 sm:p-6 text-center">
+            <Award className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 text-yellow-600" />
+            <div className="text-xl sm:text-2xl font-bold">2</div>
+            <div className="text-xs sm:text-sm text-gray-600">Certificates</div>
           </CardContent>
         </Card>
         <Card>
-          <CardContent className="p-6 text-center">
-            <Star className="h-8 w-8 mx-auto mb-2 text-purple-600" />
-            <div className="text-2xl font-bold">4.8</div>
-            <div className="text-sm text-gray-600">Avg. Grade</div>
+          <CardContent className="p-4 sm:p-6 text-center">
+            <Star className="h-6 w-6 sm:h-8 sm:w-8 mx-auto mb-2 text-purple-600" />
+            <div className="text-xl sm:text-2xl font-bold">4.8</div>
+            <div className="text-xs sm:text-sm text-gray-600">Avg. Grade</div>
           </CardContent>
         </Card>
       </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Continue Learning */}
         <div className="lg:col-span-2">
-          <h2 className="text-2xl font-bold mb-6">Continue Learning</h2>
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Continue Learning</h2>
           <div className="space-y-4">
             {recentCourses.map((course) => (
               <Card key={course.id} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex gap-4">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <img 
                       src={course.image} 
                       alt={course.title}
-                      className="w-20 h-20 rounded-lg object-cover"
+                      className="w-full sm:w-20 h-20 rounded-lg object-cover"
                     />
                     <div className="flex-1">
-                      <h3 className="font-semibold mb-1">{course.title}</h3>
-                      <p className="text-sm text-gray-600 mb-2">By {course.instructor}</p>
+                      <h3 className="font-semibold mb-1 text-sm sm:text-base">{course.title}</h3>
+                      <p className="text-xs sm:text-sm text-gray-600 mb-2">By {course.instructor}</p>
                       <div className="mb-2">
-                        <div className="flex justify-between text-sm mb-1">
+                        <div className="flex justify-between text-xs sm:text-sm mb-1">
                           <span>Progress</span>
                           <span>{course.progress}%</span>
                         </div>
@@ -285,9 +286,9 @@ const LoggedInHome = () => {
                           ></div>
                         </div>
                       </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">Next: {course.nextLesson}</span>
-                        <Button size="sm">
+                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <span className="text-xs sm:text-sm text-gray-600">Next: {course.nextLesson}</span>
+                        <Button size="sm" className="w-full sm:w-auto">
                           <PlayCircle className="h-4 w-4 mr-1" />
                           Continue
                         </Button>
@@ -304,18 +305,18 @@ const LoggedInHome = () => {
         <div className="space-y-6">
           {/* Upcoming Deadlines */}
           <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Upcoming Deadlines</CardTitle>
+            <CardHeader className="p-4 sm:p-6">
+              <CardTitle className="text-base sm:text-lg">Upcoming Deadlines</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 p-4 sm:p-6 pt-0">
               {upcomingDeadlines.map((deadline) => (
-                <div key={deadline.id} className="flex justify-between items-start">
-                  <div>
-                    <h4 className="font-medium text-sm">{deadline.title}</h4>
+                <div key={deadline.id} className="flex justify-between items-start gap-2">
+                  <div className="flex-1">
+                    <h4 className="font-medium text-xs sm:text-sm">{deadline.title}</h4>
                     <p className="text-xs text-gray-600">{deadline.course}</p>
                     <p className="text-xs text-gray-500">{deadline.type}</p>
                   </div>
-                  <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">
+                  <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded whitespace-nowrap">
                     {deadline.dueDate}
                   </span>
                 </div>
@@ -325,16 +326,16 @@ const LoggedInHome = () => {
 
           {/* Achievements */}
           <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Achievements</CardTitle>
+            <CardHeader className="p-4 sm:p-6">
+              <CardTitle className="text-base sm:text-lg">Achievements</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="space-y-3 p-4 sm:p-6 pt-0">
               {achievements.map((achievement, index) => (
                 <div key={index} className="flex items-center gap-3">
                   <achievement.icon 
-                    className={`h-6 w-6 ${achievement.earned ? 'text-yellow-500' : 'text-gray-300'}`} 
+                    className={`h-5 w-5 sm:h-6 sm:w-6 ${achievement.earned ? 'text-yellow-500' : 'text-gray-300'}`} 
                   />
-                  <span className={`text-sm ${achievement.earned ? 'text-gray-900' : 'text-gray-500'}`}>
+                  <span className={`text-xs sm:text-sm ${achievement.earned ? 'text-gray-900' : 'text-gray-500'}`}>
                     {achievement.title}
                   </span>
                 </div>
