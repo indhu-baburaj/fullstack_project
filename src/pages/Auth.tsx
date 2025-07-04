@@ -93,7 +93,7 @@ const Auth = () => {
             </Button>
           </Link>
           <Book className="h-12 w-12 mx-auto mb-4 text-primary" />
-          <CardTitle>EduVerse</CardTitle>
+          <CardTitle>WAcademy</CardTitle>
           <CardDescription>Access your learning platform</CardDescription>
         </CardHeader>
         <CardContent>

@@ -21,7 +21,7 @@ const ManageTeachers = () => {
     {
       id: 1,
       name: "Dr. Sarah Johnson",
-      email: "sarah.johnson@eduverse.com",
+      email: "sarah.johnson@WAcademy.com",
       phone: "+1 (555) 123-4567",
       department: "Computer Science",
       courses: ["Web Development", "JavaScript Advanced"],
@@ -34,7 +34,7 @@ const ManageTeachers = () => {
     {
       id: 2,
       name: "Prof. Michael Chen",
-      email: "michael.chen@eduverse.com",
+      email: "michael.chen@WAcademy.com",
       phone: "+1 (555) 234-5678",
       department: "Data Science",
       courses: ["Data Science Fundamentals", "Machine Learning"],
@@ -47,7 +47,7 @@ const ManageTeachers = () => {
     {
       id: 3,
       name: "Lisa Rodriguez",
-      email: "lisa.rodriguez@eduverse.com",
+      email: "lisa.rodriguez@WAcademy.com",
       phone: "+1 (555) 345-6789",
       department: "Marketing",
       courses: ["Digital Marketing", "Social Media Strategy"],
@@ -60,7 +60,7 @@ const ManageTeachers = () => {
     {
       id: 4,
       name: "Dr. James Wilson",
-      email: "james.wilson@eduverse.com",
+      email: "james.wilson@WAcademy.com",
       phone: "+1 (555) 456-7890",
       department: "AI/ML",
       courses: ["Machine Learning Basics"],

@@ -59,7 +59,7 @@ const LoggedOutHome = () => {
       {/* Hero Section */}
       <section className="text-center py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg sm:rounded-2xl text-white mx-2 sm:mx-0">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">Welcome to EduVerse</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">Welcome to WAcademy</h1>
           <p className="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 leading-relaxed px-2">
             Your gateway to quality education. Learn from industry experts, collaborate with peers, 
             and advance your career with our comprehensive learning platform.
@@ -141,7 +141,7 @@ const LoggedOutHome = () => {
       <section className="bg-gray-50 rounded-lg sm:rounded-2xl p-6 sm:p-8 lg:p-12 text-center mx-2 sm:mx-0">
         <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Ready to Start Learning?</h2>
         <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
-          Join thousands of students who are advancing their careers with EduVerse
+          Join thousands of students who are advancing their careers with WAcademy
         </p>
         <Link to="/auth">
           <Button size="lg" className="w-full sm:w-auto">Get Started Today</Button>
