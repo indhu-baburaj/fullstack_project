@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       let userRole: 'student' | 'teacher' | 'admin' = 'student';
       
       // Determine role based on email or explicit role parameter
-      if (email === 'admin@eduverse.com' || role === 'admin') {
+      if (email === 'admin@WAcademy.com' || role === 'admin') {
         userRole = 'admin';
       } else if (email.includes('teacher') || role === 'teacher') {
         userRole = 'teacher';

@@ -63,7 +63,7 @@ const Blog = () => {
     <div className="space-y-8">
       {/* Header */}
       <section className="text-center">
-        <h1 className="text-4xl font-bold mb-4">EduVerse Blog</h1>
+        <h1 className="text-4xl font-bold mb-4">WAcademy Blog</h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Stay updated with the latest trends, tips, and insights in digital education
         </p>

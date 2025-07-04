@@ -22,7 +22,7 @@ import {
 const HelpCenter = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [chatMessages, setChatMessages] = useState([
-    { id: 1, type: 'bot', message: 'Hello! I\'m here to help you with any questions about EduVerse. How can I assist you today?' }
+    { id: 1, type: 'bot', message: 'Hello! I\'m here to help you with any questions about WAcademy. How can I assist you today?' }
   ]);
   const [newMessage, setNewMessage] = useState('');
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -61,7 +61,7 @@ const HelpCenter = () => {
     {
       id: 6,
       question: "Can I access courses on mobile devices?",
-      answer: "Yes, EduVerse is fully responsive and works on all devices including smartphones and tablets. You can access all features through your mobile browser.",
+      answer: "Yes, W is fully responsive and works on all devices including smartphones and tablets. You can access all features through your mobile browser.",
       category: "technical"
     }
   ];
@@ -69,7 +69,7 @@ const HelpCenter = () => {
   const guides = [
     {
       id: 1,
-      title: "Getting Started with EduVerse",
+      title: "Getting Started with WAcademy",
       description: "Complete guide for new users",
       type: "guide",
       readTime: "5 min",
@@ -290,7 +290,7 @@ const HelpCenter = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <h4 className="font-medium mb-2">Email Support</h4>
-                    <p className="text-sm text-gray-600 mb-2">support@eduverse.com</p>
+                    <p className="text-sm text-gray-600 mb-2">support@WAcademy.com</p>
                     <p className="text-xs text-gray-500">Response within 24 hours</p>
                   </div>
                   <div>

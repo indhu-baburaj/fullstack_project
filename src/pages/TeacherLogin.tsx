@@ -163,7 +163,7 @@ const TeacherLogin = () => {
             
             <div className="text-xs text-green-600 bg-green-50 p-3 rounded-md">
               <strong>Demo Credentials:</strong><br />
-              Email: teacher@eduverse.com<br />
+              Email: teacher@WAcademy.com<br />
               Password: teacher123
             </div>
             <Button type="submit" className="w-full bg-green-600 hover:bg-green-700" disabled={isLoading}>
