@@ -1,22 +1,22 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Book, Users, Calendar, Award, PlayCircle, Clock, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Home = () => {
-  // For demo purposes, we'll simulate login state
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAuthenticated } = useAuth();
 
-  if (isLoggedIn) {
-    return <LoggedInHome onLogout={() => setIsLoggedIn(false)} />;
+  if (isAuthenticated) {
+    return <LoggedInHome />;
   }
 
-  return <LoggedOutHome onLogin={() => setIsLoggedIn(true)} />;
+  return <LoggedOutHome />;
 };
 
-const LoggedOutHome = ({ onLogin }: { onLogin: () => void }) => {
+const LoggedOutHome = () => {
   const stats = [
     { icon: Book, label: 'Active Courses', value: '150+' },
     { icon: Users, label: 'Students Enrolled', value: '25,000+' },
@@ -70,14 +70,15 @@ const LoggedOutHome = ({ onLogin }: { onLogin: () => void }) => {
                 Explore Courses
               </Button>
             </Link>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600 min-w-[160px]"
-              onClick={onLogin}
-            >
-              Start Learning
-            </Button>
+            <Link to="/auth">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600 min-w-[160px]"
+              >
+                Start Learning
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -127,7 +128,9 @@ const LoggedOutHome = ({ onLogin }: { onLogin: () => void }) => {
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-sm text-gray-600">{course.duration}</span>
                 </div>
-                <Button className="w-full" onClick={onLogin}>Enroll Now</Button>
+                <Link to="/auth">
+                  <Button className="w-full">Enroll Now</Button>
+                </Link>
               </CardContent>
             </Card>
           ))}
@@ -140,13 +143,17 @@ const LoggedOutHome = ({ onLogin }: { onLogin: () => void }) => {
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
           Join thousands of students who are advancing their careers with EduVerse
         </p>
-        <Button size="lg" onClick={onLogin}>Get Started Today</Button>
+        <Link to="/auth">
+          <Button size="lg">Get Started Today</Button>
+        </Link>
       </section>
     </div>
   );
 };
 
-const LoggedInHome = ({ onLogout }: { onLogout: () => void }) => {
+const LoggedInHome = () => {
+  const { user } = useAuth();
+
   const recentCourses = [
     {
       id: 1,
@@ -193,14 +200,9 @@ const LoggedInHome = ({ onLogout }: { onLogout: () => void }) => {
     <div className="space-y-8">
       {/* Welcome Header */}
       <section className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl text-white p-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div>
-            <h1 className="text-3xl font-bold mb-2">Welcome back, Student!</h1>
-            <p className="text-blue-100">Continue your learning journey</p>
-          </div>
-          <Button variant="secondary" onClick={onLogout}>
-            Demo Logout
-          </Button>
+        <div>
+          <h1 className="text-3xl font-bold mb-2">Welcome back, {user?.name}!</h1>
+          <p className="text-blue-100">Continue your learning journey</p>
         </div>
       </section>
 

@@ -64,14 +64,9 @@ const Navigation = () => {
                 </Button>
               </>
             ) : (
-              <>
-                <Link to="/auth">
-                  <Button variant="outline" size="sm">Login</Button>
-                </Link>
-                <Link to="/auth">
-                  <Button size="sm">Sign Up</Button>
-                </Link>
-              </>
+              <Link to="/auth">
+                <Button size="sm">Login</Button>
+              </Link>
             )}
           </div>
         </div>
