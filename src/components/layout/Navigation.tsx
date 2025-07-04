@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Home, Book, User, MessageSquare, Calendar, FileText, LogOut, Shield, GraduationCap, Users, BarChart3, Menu, X } from 'lucide-react';
+import { Home, Book, User, MessageSquare, Calendar, FileText, LogOut, Shield, GraduationCap, Users, BarChart3, Menu, X, Bell } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
 const Navigation = () => {
@@ -17,12 +17,14 @@ const Navigation = () => {
     { path: '/dashboard', label: 'Dashboard', icon: Calendar },
     { path: '/assignments', label: 'Assignments', icon: FileText },
     { path: '/forums', label: 'Forums', icon: MessageSquare },
+    { path: '/notifications', label: 'Notifications', icon: Bell },
     { path: '/profile', label: 'Profile', icon: User },
   ];
 
   const teacherNavItems = [
     { path: '/', label: 'Home', icon: Home },
     { path: '/teacher-dashboard', label: 'Dashboard', icon: Calendar },
+    { path: '/notifications', label: 'Notifications', icon: Bell },
     { path: '/profile', label: 'Profile', icon: User },
   ];
 
@@ -33,6 +35,7 @@ const Navigation = () => {
     { path: '/admin/manage-teachers', label: 'Teachers', icon: GraduationCap },
     { path: '/admin/assignments-overview', label: 'Assignments', icon: FileText },
     { path: '/admin/reports', label: 'Reports', icon: BarChart3 },
+    { path: '/notifications', label: 'Notifications', icon: Bell },
   ];
 
   const getNavItems = () => {

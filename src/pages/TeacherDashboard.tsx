@@ -17,7 +17,10 @@ import {
   Clock,
   Award,
   Settings,
-  HelpCircle
+  HelpCircle,
+  Bell,
+  MessageSquare,
+  BarChart3
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -27,271 +30,208 @@ const TeacherDashboard = () => {
   const navigate = useNavigate();
 
   const stats = [
-    { title: "My Courses", value: "5", change: "+1 this month", icon: BookOpen, color: "text-blue-600" },
+    { title: "Active Courses", value: "5", change: "+1 this month", icon: BookOpen, color: "text-blue-600" },
     { title: "Total Students", value: "247", change: "+12 this week", icon: Users, color: "text-green-600" },
-    { title: "Assignments", value: "23", change: "3 pending review", icon: FileText, color: "text-purple-600" },
-    { title: "Avg. Completion", value: "89%", change: "+5% this month", icon: TrendingUp, color: "text-orange-600" }
+    { title: "Pending Reviews", value: "8", change: "3 urgent", icon: FileText, color: "text-orange-600" },
+    { title: "Course Rating", value: "4.8", change: "+0.2 this month", icon: Award, color: "text-purple-600" }
   ];
 
-  const myCourses = [
-    { id: 1, name: "Introduction to Web Development", students: 120, assignments: 8, completion: 85 },
-    { id: 2, name: "Advanced JavaScript", students: 67, assignments: 12, completion: 78 },
-    { id: 3, name: "React Fundamentals", students: 45, assignments: 6, completion: 92 },
-    { id: 4, name: "Node.js Backend", students: 15, assignments: 10, completion: 88 }
+  const recentActivity = [
+    { type: "submission", message: "Alice Johnson submitted React Assignment", time: "2 hours ago", urgent: true },
+    { type: "enrollment", message: "5 new students enrolled in JavaScript course", time: "4 hours ago", urgent: false },
+    { type: "message", message: "Bob Smith asked a question in Web Dev course", time: "6 hours ago", urgent: false },
+    { type: "deadline", message: "Node.js Quiz deadline in 2 days", time: "1 day ago", urgent: true }
   ];
 
-  const recentSubmissions = [
-    { student: "Alice Johnson", assignment: "JavaScript Functions", course: "Advanced JavaScript", submitted: "2 hours ago", status: "pending" },
-    { student: "Bob Smith", assignment: "React Components", course: "React Fundamentals", submitted: "5 hours ago", status: "reviewed" },
-    { student: "Carol Davis", assignment: "HTML Structure", course: "Web Development", submitted: "1 day ago", status: "graded" },
-    { student: "David Wilson", assignment: "API Integration", course: "Node.js Backend", submitted: "1 day ago", status: "pending" }
+  const upcomingTasks = [
+    { title: "Grade JavaScript Assignments", due: "Today", priority: "high" },
+    { title: "Prepare React Quiz", due: "Tomorrow", priority: "medium" },
+    { title: "Update Course Material", due: "This Week", priority: "low" },
+    { title: "Student Progress Review", due: "Next Week", priority: "medium" }
   ];
 
-  const upcomingDeadlines = [
-    { title: "JavaScript Quiz", course: "Advanced JavaScript", date: "March 15, 2024", type: "quiz" },
-    { title: "React Project", course: "React Fundamentals", date: "March 18, 2024", type: "project" },
-    { title: "Final Exam", course: "Web Development", date: "March 25, 2024", type: "exam" }
+  const quickActions = [
+    { title: "Create New Course", icon: Plus, action: () => navigate('/create-course') },
+    { title: "Upload Materials", icon: Upload, action: () => navigate('/upload-materials') },
+    { title: "View Analytics", icon: BarChart3, action: () => navigate('/analytics') },
+    { title: "Student Messages", icon: MessageSquare, action: () => navigate('/messages') }
   ];
-
-  const handleCreateCourse = () => {
-    // For now, show a placeholder - in real app would navigate to course creation
-    alert('Course creation feature - Navigate to course creation page');
-  };
-
-  const handleUploadMaterials = () => {
-    // For now, show a placeholder - in real app would navigate to materials upload
-    alert('Materials upload feature - Navigate to materials upload page');
-  };
-
-  const handleViewCourse = (courseId: number) => {
-    navigate(`/course/${courseId}`);
-  };
-
-  const handleEditCourse = (courseId: number) => {
-    // For now, show a placeholder - in real app would navigate to course editing
-    alert(`Edit course ${courseId} - Navigate to course editing page`);
-  };
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-        <div>
-          <h1 className="text-3xl font-bold">Teacher Dashboard</h1>
-          <p className="text-gray-600">Welcome back, {user?.name}</p>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-2">
-          <Button 
-            variant="outline" 
-            onClick={handleUploadMaterials}
-            className="w-full sm:w-auto"
-          >
-            <Upload className="h-4 w-4 mr-2" />
-            Upload Materials
-          </Button>
-          <Button 
-            onClick={handleCreateCourse}
-            className="w-full sm:w-auto"
-          >
-            <Plus className="h-4 w-4 mr-2" />
-            Create Course
-          </Button>
-          <Button 
-            variant="outline" 
-            onClick={() => navigate('/profile')}
-            className="w-full sm:w-auto"
-          >
-            <Settings className="h-4 w-4 mr-2" />
-            Profile
-          </Button>
-        </div>
-      </div>
-
-      {/* Key Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
-          <Card key={index}>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600">{stat.title}</p>
-                  <p className="text-2xl font-bold">{stat.value}</p>
-                  <p className="text-sm text-green-600">{stat.change}</p>
-                </div>
-                <stat.icon className={`h-8 w-8 ${stat.color}`} />
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      <Tabs defaultValue="courses" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="courses">My Courses</TabsTrigger>
-          <TabsTrigger value="submissions">Submissions</TabsTrigger>
-          <TabsTrigger value="materials">Materials</TabsTrigger>
-          <TabsTrigger value="calendar">Schedule</TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="courses" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2">
-              <Card>
-                <CardHeader>
-                  <CardTitle>My Courses</CardTitle>
-                  <CardDescription>Manage your active courses</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {myCourses.map((course) => (
-                    <div key={course.id} className="flex items-center justify-between p-4 border rounded-lg">
-                      <div className="flex-1">
-                        <h3 className="font-semibold">{course.name}</h3>
-                        <p className="text-sm text-gray-600">{course.students} students • {course.assignments} assignments</p>
-                        <div className="mt-2">
-                          <div className="flex justify-between text-sm mb-1">
-                            <span>Completion Rate</span>
-                            <span>{course.completion}%</span>
-                          </div>
-                          <Progress value={course.completion} />
-                        </div>
-                      </div>
-                      <div className="flex gap-2 ml-4">
-                        <Button 
-                          size="sm" 
-                          variant="outline"
-                          onClick={() => handleViewCourse(course.id)}
-                        >
-                          <Eye className="h-4 w-4" />
-                        </Button>
-                        <Button 
-                          size="sm" 
-                          variant="outline"
-                          onClick={() => handleEditCourse(course.id)}
-                        >
-                          <Edit className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="space-y-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Upcoming Deadlines</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {upcomingDeadlines.map((deadline, index) => (
-                    <div key={index} className="flex justify-between items-start p-3 bg-gray-50 rounded-lg">
-                      <div>
-                        <h4 className="font-medium text-sm">{deadline.title}</h4>
-                        <p className="text-xs text-gray-600">{deadline.course}</p>
-                      </div>
-                      <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                        {deadline.date}
-                      </span>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-              
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Quick Actions</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-start"
-                    onClick={() => navigate('/help')}
-                  >
-                    <HelpCircle className="h-4 w-4 mr-2" />
-                    Help Center
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-start"
-                    onClick={() => navigate('/settings')}
-                  >
-                    <Settings className="h-4 w-4 mr-2" />
-                    Settings
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto space-y-6">
+        {/* Header */}
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-6">
+          <div>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              Welcome back, {user?.name}!
+            </h1>
+            <p className="text-lg text-gray-600">Here's what's happening with your courses today.</p>
           </div>
-        </TabsContent>
+          
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button onClick={() => navigate('/notifications')} variant="outline" className="relative">
+              <Bell className="h-4 w-4 mr-2" />
+              Notifications
+              <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                3
+              </span>
+            </Button>
+            <Button onClick={() => navigate('/profile')}>
+              <Settings className="h-4 w-4 mr-2" />
+              Profile Settings
+            </Button>
+          </div>
+        </div>
 
-        <TabsContent value="submissions" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Recent Submissions</CardTitle>
-              <CardDescription>Review and grade student assignments</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {recentSubmissions.map((submission, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
-                    <div>
-                      <h4 className="font-medium">{submission.assignment}</h4>
-                      <p className="text-sm text-gray-600">by {submission.student} • {submission.course}</p>
-                      <p className="text-xs text-gray-500">{submission.submitted}</p>
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {stats.map((stat, index) => (
+            <Card key={index} className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600">{stat.title}</p>
+                    <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
+                    <p className="text-sm text-green-600 mt-1">{stat.change}</p>
+                  </div>
+                  <div className={`p-3 rounded-full bg-gray-100`}>
+                    <stat.icon className={`h-6 w-6 ${stat.color}`} />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Main Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left Column - Main Dashboard */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Quick Actions */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Quick Actions</CardTitle>
+                <CardDescription>Common tasks and shortcuts</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  {quickActions.map((action, index) => (
+                    <Button
+                      key={index}
+                      variant="outline"
+                      className="h-24 flex-col gap-2 hover:bg-blue-50"
+                      onClick={action.action}
+                    >
+                      <action.icon className="h-6 w-6" />
+                      <span className="text-sm text-center">{action.title}</span>
+                    </Button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Recent Activity */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Recent Activity</CardTitle>
+                <CardDescription>Latest updates from your courses</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {recentActivity.map((activity, index) => (
+                  <div key={index} className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50">
+                    <div className={`w-2 h-2 rounded-full mt-2 ${activity.urgent ? 'bg-red-500' : 'bg-blue-500'}`} />
+                    <div className="flex-1">
+                      <p className="text-sm font-medium text-gray-900">{activity.message}</p>
+                      <p className="text-xs text-gray-500">{activity.time}</p>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        submission.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                        submission.status === 'reviewed' ? 'bg-blue-100 text-blue-800' :
-                        'bg-green-100 text-green-800'
-                      }`}>
-                        {submission.status}
-                      </span>
-                      <Button 
-                        size="sm"
-                        onClick={() => alert('Navigate to assignment review page')}
-                      >
-                        Review
-                      </Button>
-                    </div>
+                    {activity.urgent && (
+                      <span className="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Urgent</span>
+                    )}
                   </div>
                 ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
+              </CardContent>
+            </Card>
+          </div>
 
-        <TabsContent value="materials" className="space-y-4">
-          <Card>
-            <CardContent className="p-6">
-              <div className="text-center py-8">
-                <Upload className="h-16 w-16 mx-auto text-gray-400 mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Course Materials</h3>
-                <p className="text-gray-600 mb-4">Upload and manage course materials, videos, and resources</p>
-                <Button onClick={handleUploadMaterials}>
-                  <Plus className="h-4 w-4 mr-2" />
-                  Upload Materials
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
+          {/* Right Column - Sidebar */}
+          <div className="space-y-6">
+            {/* Upcoming Tasks */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Clock className="h-5 w-5" />
+                  Upcoming Tasks
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {upcomingTasks.map((task, index) => (
+                  <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex-1">
+                      <h4 className="font-medium text-sm">{task.title}</h4>
+                      <p className="text-xs text-gray-600">Due: {task.due}</p>
+                    </div>
+                    <span className={`text-xs px-2 py-1 rounded ${
+                      task.priority === 'high' ? 'bg-red-100 text-red-800' :
+                      task.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' :
+                      'bg-green-100 text-green-800'
+                    }`}>
+                      {task.priority}
+                    </span>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
 
-        <TabsContent value="calendar" className="space-y-4">
-          <Card>
-            <CardContent className="p-6">
-              <div className="text-center py-8">
-                <Calendar className="h-16 w-16 mx-auto text-gray-400 mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Teaching Schedule</h3>
-                <p className="text-gray-600 mb-4">View your teaching schedule and upcoming classes</p>
-                <Button onClick={() => alert('Navigate to calendar view')}>
-                  <Calendar className="h-4 w-4 mr-2" />
-                  View Calendar
+            {/* Teaching Progress */}
+            <Card>
+              <CardHeader>
+                <CardTitle>This Month's Progress</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span>Assignments Graded</span>
+                    <span>28/35</span>
+                  </div>
+                  <Progress value={80} />
+                </div>
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span>Course Completion</span>
+                    <span>85%</span>
+                  </div>
+                  <Progress value={85} />
+                </div>
+                <div>
+                  <div className="flex justify-between text-sm mb-2">
+                    <span>Student Engagement</span>
+                    <span>92%</span>
+                  </div>
+                  <Progress value={92} />
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Help & Support */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Need Help?</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/help')}>
+                  <HelpCircle className="h-4 w-4 mr-2" />
+                  Help Center
                 </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+                <Button variant="outline" className="w-full justify-start" onClick={() => navigate('/support')}>
+                  <MessageSquare className="h-4 w-4 mr-2" />
+                  Contact Support
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

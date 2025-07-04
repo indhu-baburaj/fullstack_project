@@ -26,6 +26,7 @@ import Reports from "./pages/admin/Reports";
 import Assignments from "./pages/Assignments";
 import Settings from "./pages/Settings";
 import HelpCenter from "./pages/HelpCenter";
+import Notifications from "./pages/Notifications";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,7 @@ const App = () => (
             <Route path="/admin/reports" element={<Layout><Reports /></Layout>} />
             <Route path="/assignments" element={<Layout><Assignments /></Layout>} />
             <Route path="/forums" element={<Layout><Forums /></Layout>} />
+            <Route path="/notifications" element={<Layout><Notifications /></Layout>} />
             <Route path="/profile" element={<Layout><Profile /></Layout>} />
             <Route path="/settings" element={<Layout><Settings /></Layout>} />
             <Route path="/blog" element={<Layout><Blog /></Layout>} />
