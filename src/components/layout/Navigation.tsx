@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -35,7 +34,6 @@ const Navigation = () => {
     { path: '/admin-dashboard', label: 'Dashboard', icon: Calendar },
     { path: '/admin/manage-courses', label: 'Courses', icon: Book },
     { path: '/admin/manage-teachers', label: 'Teachers', icon: GraduationCap },
-    { path: '/admin/manage-students', label: 'Students', icon: Users },
     { path: '/admin/assignments-overview', label: 'Assignments', icon: FileText },
     { path: '/admin/reports', label: 'Reports', icon: BarChart3 },
   ];
@@ -57,6 +55,7 @@ const Navigation = () => {
   const handleLogout = () => {
     logout();
     setIsMobileMenuOpen(false);
+    window.location.href = '/logout';
   };
 
   const closeMobileMenu = () => {

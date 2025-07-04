@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
+import Logout from "./pages/Logout";
 import AdminLogin from "./pages/AdminLogin";
 import TeacherLogin from "./pages/TeacherLogin";
 import TeacherDashboard from "./pages/TeacherDashboard";
@@ -21,7 +21,6 @@ import CoursePage from "./pages/CoursePage";
 import AdminDashboard from "./pages/AdminDashboard";
 import ManageCourses from "./pages/admin/ManageCourses";
 import ManageTeachers from "./pages/admin/ManageTeachers";
-import ManageStudents from "./pages/admin/ManageStudents";
 import AssignmentsOverview from "./pages/admin/AssignmentsOverview";
 import Reports from "./pages/admin/Reports";
 import Assignments from "./pages/Assignments";
@@ -40,6 +39,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/teacher-login" element={<TeacherLogin />} />
             <Route path="/courses" element={<Layout><Courses /></Layout>} />
@@ -49,7 +49,6 @@ const App = () => (
             <Route path="/admin-dashboard" element={<Layout><AdminDashboard /></Layout>} />
             <Route path="/admin/manage-courses" element={<Layout><ManageCourses /></Layout>} />
             <Route path="/admin/manage-teachers" element={<Layout><ManageTeachers /></Layout>} />
-            <Route path="/admin/manage-students" element={<Layout><ManageStudents /></Layout>} />
             <Route path="/admin/assignments-overview" element={<Layout><AssignmentsOverview /></Layout>} />
             <Route path="/admin/reports" element={<Layout><Reports /></Layout>} />
             <Route path="/assignments" element={<Layout><Assignments /></Layout>} />
