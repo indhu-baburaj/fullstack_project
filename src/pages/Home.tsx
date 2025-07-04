@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Book, Users, Calendar, Award, PlayCircle, Clock, Star, Shield } from 'lucide-react';
+import { Book, Users, Calendar, Award, PlayCircle, Clock, Star, Shield, GraduationCap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -147,15 +146,23 @@ const LoggedOutHome = () => {
           <Button size="lg">Get Started Today</Button>
         </Link>
         
-        {/* Admin Access Link */}
+        {/* Login Options for Teachers and Admins */}
         <div className="mt-8 pt-6 border-t border-gray-200">
-          <p className="text-sm text-gray-500 mb-2">Administrator Access</p>
-          <Link to="/admin-login">
-            <Button variant="outline" size="sm">
-              <Shield className="h-4 w-4 mr-2" />
-              Admin Login
-            </Button>
-          </Link>
+          <p className="text-sm text-gray-500 mb-4">Already have an account?</p>
+          <div className="flex justify-center gap-4">
+            <Link to="/teacher-login">
+              <Button variant="outline" size="sm">
+                <GraduationCap className="h-4 w-4 mr-2" />
+                Teacher Login
+              </Button>
+            </Link>
+            <Link to="/admin-login">
+              <Button variant="outline" size="sm">
+                <Shield className="h-4 w-4 mr-2" />
+                Admin Login
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
