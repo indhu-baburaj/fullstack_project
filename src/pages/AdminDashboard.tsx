@@ -50,7 +50,7 @@ const AdminDashboard = () => {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-          <p className="text-gray-600">System overview and management</p>
+          <p className="text-gray-600">WAcademy system overview and management</p>
         </div>
         <Button>
           <Settings className="h-4 w-4 mr-2" />

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -29,13 +30,11 @@ const Navigation = () => {
   ];
 
   const adminNavItems = [
-    { path: '/', label: 'Home', icon: Home },
     { path: '/admin-dashboard', label: 'Dashboard', icon: Calendar },
     { path: '/admin/manage-courses', label: 'Courses', icon: Book },
     { path: '/admin/manage-teachers', label: 'Teachers', icon: GraduationCap },
     { path: '/admin/assignments-overview', label: 'Assignments', icon: FileText },
     { path: '/admin/reports', label: 'Reports', icon: BarChart3 },
-    { path: '/notifications', label: 'Notifications', icon: Bell },
   ];
 
   const getNavItems = () => {
@@ -69,7 +68,7 @@ const Navigation = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
               <Book className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
-              <span className="text-lg sm:text-xl font-bold text-gray-900">EduVerse</span>
+              <span className="text-lg sm:text-xl font-bold text-gray-900">WAcademy</span>
             </Link>
           </div>
           

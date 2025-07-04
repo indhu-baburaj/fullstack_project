@@ -85,7 +85,7 @@ const Logout = () => {
         <CardContent className="space-y-6">
           <div className="text-center">
             <p className="text-gray-600 mb-4">
-              You have been successfully logged out of your EduVerse account. 
+              You have been successfully logged out of your WAcademy account. 
             </p>
             <p className="text-sm text-gray-500">
               Thank you for using our platform. Your session has been securely terminated.

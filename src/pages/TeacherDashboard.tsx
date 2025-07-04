@@ -4,36 +4,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { 
-  BookOpen, 
-  Users, 
-  FileText, 
-  Upload, 
-  Plus, 
-  Edit, 
-  Eye,
-  Calendar,
-  TrendingUp,
   Clock,
-  Award,
   Settings,
   HelpCircle,
   Bell,
-  MessageSquare,
-  BarChart3
+  MessageSquare
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import TeacherStats from '@/components/dashboard/TeacherStats';
+import QuickActions from '@/components/dashboard/QuickActions';
 
 const TeacherDashboard = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-
-  const stats = [
-    { title: "Active Courses", value: "5", change: "+1 this month", icon: BookOpen, color: "text-blue-600" },
-    { title: "Total Students", value: "247", change: "+12 this week", icon: Users, color: "text-green-600" },
-    { title: "Pending Reviews", value: "8", change: "3 urgent", icon: FileText, color: "text-orange-600" },
-    { title: "Course Rating", value: "4.8", change: "+0.2 this month", icon: Award, color: "text-purple-600" }
-  ];
 
   const recentActivity = [
     { type: "submission", message: "Alice Johnson submitted React Assignment", time: "2 hours ago", urgent: true },
@@ -47,13 +31,6 @@ const TeacherDashboard = () => {
     { title: "Prepare React Quiz", due: "Tomorrow", priority: "medium" },
     { title: "Update Course Material", due: "This Week", priority: "low" },
     { title: "Student Progress Review", due: "Next Week", priority: "medium" }
-  ];
-
-  const quickActions = [
-    { title: "Create New Course", icon: Plus, action: () => navigate('/create-course') },
-    { title: "Upload Materials", icon: Upload, action: () => navigate('/upload-materials') },
-    { title: "View Analytics", icon: BarChart3, action: () => navigate('/analytics') },
-    { title: "Student Messages", icon: MessageSquare, action: () => navigate('/messages') }
   ];
 
   return (
@@ -84,51 +61,14 @@ const TeacherDashboard = () => {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((stat, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                    <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
-                    <p className="text-sm text-green-600 mt-1">{stat.change}</p>
-                  </div>
-                  <div className={`p-3 rounded-full bg-gray-100`}>
-                    <stat.icon className={`h-6 w-6 ${stat.color}`} />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <TeacherStats />
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Main Dashboard */}
           <div className="lg:col-span-2 space-y-6">
             {/* Quick Actions */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
-                <CardDescription>Common tasks and shortcuts</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                  {quickActions.map((action, index) => (
-                    <Button
-                      key={index}
-                      variant="outline"
-                      className="h-24 flex-col gap-2 hover:bg-blue-50"
-                      onClick={action.action}
-                    >
-                      <action.icon className="h-6 w-6" />
-                      <span className="text-sm text-center">{action.title}</span>
-                    </Button>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <QuickActions />
 
             {/* Recent Activity */}
             <Card>
