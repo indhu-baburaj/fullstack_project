@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Home, Book, User, MessageSquare, Calendar, FileText, LogOut, Shield, GraduationCap, Users, BarChart3, Menu, X, Bell } from 'lucide-react';
+import { Home, Book, User, MessageSquare, Calendar, FileText, LogOut, Shield, GraduationCap, Users, BarChart3, Menu, X, Bell, Settings, HelpCircle } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
 const Navigation = () => {
@@ -20,13 +20,15 @@ const Navigation = () => {
     { path: '/forums', label: 'Forums', icon: MessageSquare },
     { path: '/notifications', label: 'Notifications', icon: Bell },
     { path: '/profile', label: 'Profile', icon: User },
+    { path: '/help', label: 'Help', icon: HelpCircle },
   ];
 
   const teacherNavItems = [
-    { path: '/', label: 'Home', icon: Home },
     { path: '/teacher-dashboard', label: 'Dashboard', icon: Calendar },
     { path: '/notifications', label: 'Notifications', icon: Bell },
     { path: '/profile', label: 'Profile', icon: User },
+    { path: '/settings', label: 'Settings', icon: Settings },
+    { path: '/help', label: 'Help', icon: HelpCircle },
   ];
 
   const adminNavItems = [
@@ -35,6 +37,9 @@ const Navigation = () => {
     { path: '/admin/manage-teachers', label: 'Teachers', icon: GraduationCap },
     { path: '/admin/assignments-overview', label: 'Assignments', icon: FileText },
     { path: '/admin/reports', label: 'Reports', icon: BarChart3 },
+    { path: '/notifications', label: 'Notifications', icon: Bell },
+    { path: '/profile', label: 'Profile', icon: User },
+    { path: '/settings', label: 'Settings', icon: Settings },
   ];
 
   const getNavItems = () => {
@@ -61,12 +66,26 @@ const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const getHomeLink = () => {
+    if (!isAuthenticated) return '/';
+    
+    switch (user?.role) {
+      case 'admin':
+        return '/admin-dashboard';
+      case 'teacher':
+        return '/teacher-dashboard';
+      case 'student':
+      default:
+        return '/dashboard';
+    }
+  };
+
   return (
     <nav className="bg-white shadow-sm border-b sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
+            <Link to={getHomeLink()} className="flex items-center space-x-2" onClick={closeMobileMenu}>
               <Book className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
               <span className="text-lg sm:text-xl font-bold text-gray-900">WAcademy</span>
             </Link>
