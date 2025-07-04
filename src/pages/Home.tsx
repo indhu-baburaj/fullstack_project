@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Book, Users, Calendar, Award, PlayCircle, Clock, Star } from 'lucide-react';
+import { Book, Users, Calendar, Award, PlayCircle, Clock, Star, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -146,6 +146,17 @@ const LoggedOutHome = () => {
         <Link to="/auth">
           <Button size="lg">Get Started Today</Button>
         </Link>
+        
+        {/* Admin Access Link */}
+        <div className="mt-8 pt-6 border-t border-gray-200">
+          <p className="text-sm text-gray-500 mb-2">Administrator Access</p>
+          <Link to="/admin-login">
+            <Button variant="outline" size="sm">
+              <Shield className="h-4 w-4 mr-2" />
+              Admin Login
+            </Button>
+          </Link>
+        </div>
       </section>
     </div>
   );

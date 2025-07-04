@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Home, Book, User, MessageSquare, Calendar, FileText, LogOut } from 'lucide-react';
+import { Home, Book, User, MessageSquare, Calendar, FileText, LogOut, Shield } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
 const Navigation = () => {
@@ -51,6 +51,20 @@ const Navigation = () => {
                   <span>{item.label}</span>
                 </Link>
               ))}
+              
+              {user?.role === 'admin' && (
+                <Link
+                  to="/admin-dashboard"
+                  className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isActive('/admin-dashboard')
+                      ? 'text-primary bg-primary/10'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  <Shield className="h-4 w-4" />
+                  <span>Admin</span>
+                </Link>
+              )}
             </div>
           )}
           
@@ -64,9 +78,17 @@ const Navigation = () => {
                 </Button>
               </>
             ) : (
-              <Link to="/auth">
-                <Button size="sm">Login</Button>
-              </Link>
+              <div className="flex items-center space-x-2">
+                <Link to="/auth">
+                  <Button variant="outline" size="sm">Login</Button>
+                </Link>
+                <Link to="/admin-login">
+                  <Button size="sm" variant="secondary">
+                    <Shield className="h-4 w-4 mr-1" />
+                    Admin
+                  </Button>
+                </Link>
+              </div>
             )}
           </div>
         </div>

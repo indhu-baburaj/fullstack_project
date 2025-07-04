@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
+import AdminLogin from "./pages/AdminLogin";
 import Blog from "./pages/Blog";
 import Forums from "./pages/Forums";
 import CoursePage from "./pages/CoursePage";
@@ -32,6 +33,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/admin-login" element={<AdminLogin />} />
             <Route path="/courses" element={<Layout><Courses /></Layout>} />
             <Route path="/course/:id" element={<Layout><CoursePage /></Layout>} />
             <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
