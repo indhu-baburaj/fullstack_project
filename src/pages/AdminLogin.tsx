@@ -19,7 +19,7 @@ const AdminLogin = () => {
     e.preventDefault();
     
     // Check for admin credentials
-    if (loginData.email === 'admin@eduverse.com' && loginData.password === 'admin123') {
+    if (loginData.email === 'admin@wacademy.com' && loginData.password === 'admin123') {
       if (login(loginData.email, loginData.password, 'admin')) {
         toast.success('Admin login successful!');
         navigate('/admin-dashboard');
@@ -82,7 +82,7 @@ const AdminLogin = () => {
             </div>
             <div className="text-xs text-slate-600 bg-slate-50 p-3 rounded-md">
               <strong>Demo Credentials:</strong><br />
-              Email: admin@eduverse.com<br />
+              Email: admin@wacademy.com<br />
               Password: admin123
             </div>
             <Button type="submit" className="w-full bg-slate-800 hover:bg-slate-700">
