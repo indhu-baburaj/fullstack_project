@@ -15,12 +15,16 @@ import {
   Calendar,
   TrendingUp,
   Clock,
-  Award
+  Award,
+  Settings,
+  HelpCircle
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const TeacherDashboard = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   const stats = [
     { title: "My Courses", value: "5", change: "+1 this month", icon: BookOpen, color: "text-blue-600" },
@@ -49,21 +53,55 @@ const TeacherDashboard = () => {
     { title: "Final Exam", course: "Web Development", date: "March 25, 2024", type: "exam" }
   ];
 
+  const handleCreateCourse = () => {
+    // For now, show a placeholder - in real app would navigate to course creation
+    alert('Course creation feature - Navigate to course creation page');
+  };
+
+  const handleUploadMaterials = () => {
+    // For now, show a placeholder - in real app would navigate to materials upload
+    alert('Materials upload feature - Navigate to materials upload page');
+  };
+
+  const handleViewCourse = (courseId: number) => {
+    navigate(`/course/${courseId}`);
+  };
+
+  const handleEditCourse = (courseId: number) => {
+    // For now, show a placeholder - in real app would navigate to course editing
+    alert(`Edit course ${courseId} - Navigate to course editing page`);
+  };
+
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold">Teacher Dashboard</h1>
           <p className="text-gray-600">Welcome back, {user?.name}</p>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline">
+        <div className="flex flex-col sm:flex-row gap-2">
+          <Button 
+            variant="outline" 
+            onClick={handleUploadMaterials}
+            className="w-full sm:w-auto"
+          >
             <Upload className="h-4 w-4 mr-2" />
             Upload Materials
           </Button>
-          <Button>
+          <Button 
+            onClick={handleCreateCourse}
+            className="w-full sm:w-auto"
+          >
             <Plus className="h-4 w-4 mr-2" />
             Create Course
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={() => navigate('/profile')}
+            className="w-full sm:w-auto"
+          >
+            <Settings className="h-4 w-4 mr-2" />
+            Profile
           </Button>
         </div>
       </div>
@@ -87,10 +125,10 @@ const TeacherDashboard = () => {
       </div>
 
       <Tabs defaultValue="courses" className="space-y-6">
-        <TabsList>
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="courses">My Courses</TabsTrigger>
           <TabsTrigger value="submissions">Submissions</TabsTrigger>
-          <TabsTrigger value="materials">Course Materials</TabsTrigger>
+          <TabsTrigger value="materials">Materials</TabsTrigger>
           <TabsTrigger value="calendar">Schedule</TabsTrigger>
         </TabsList>
 
@@ -117,10 +155,18 @@ const TeacherDashboard = () => {
                         </div>
                       </div>
                       <div className="flex gap-2 ml-4">
-                        <Button size="sm" variant="outline">
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => handleViewCourse(course.id)}
+                        >
                           <Eye className="h-4 w-4" />
                         </Button>
-                        <Button size="sm" variant="outline">
+                        <Button 
+                          size="sm" 
+                          variant="outline"
+                          onClick={() => handleEditCourse(course.id)}
+                        >
                           <Edit className="h-4 w-4" />
                         </Button>
                       </div>
@@ -147,6 +193,30 @@ const TeacherDashboard = () => {
                       </span>
                     </div>
                   ))}
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Quick Actions</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <Button 
+                    variant="outline" 
+                    className="w-full justify-start"
+                    onClick={() => navigate('/help')}
+                  >
+                    <HelpCircle className="h-4 w-4 mr-2" />
+                    Help Center
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="w-full justify-start"
+                    onClick={() => navigate('/settings')}
+                  >
+                    <Settings className="h-4 w-4 mr-2" />
+                    Settings
+                  </Button>
                 </CardContent>
               </Card>
             </div>
@@ -176,7 +246,12 @@ const TeacherDashboard = () => {
                       }`}>
                         {submission.status}
                       </span>
-                      <Button size="sm">Review</Button>
+                      <Button 
+                        size="sm"
+                        onClick={() => alert('Navigate to assignment review page')}
+                      >
+                        Review
+                      </Button>
                     </div>
                   </div>
                 ))}
@@ -192,7 +267,7 @@ const TeacherDashboard = () => {
                 <Upload className="h-16 w-16 mx-auto text-gray-400 mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Course Materials</h3>
                 <p className="text-gray-600 mb-4">Upload and manage course materials, videos, and resources</p>
-                <Button>
+                <Button onClick={handleUploadMaterials}>
                   <Plus className="h-4 w-4 mr-2" />
                   Upload Materials
                 </Button>
@@ -207,7 +282,11 @@ const TeacherDashboard = () => {
               <div className="text-center py-8">
                 <Calendar className="h-16 w-16 mx-auto text-gray-400 mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Teaching Schedule</h3>
-                <p className="text-gray-600">View your teaching schedule and upcoming classes</p>
+                <p className="text-gray-600 mb-4">View your teaching schedule and upcoming classes</p>
+                <Button onClick={() => alert('Navigate to calendar view')}>
+                  <Calendar className="h-4 w-4 mr-2" />
+                  View Calendar
+                </Button>
               </div>
             </CardContent>
           </Card>

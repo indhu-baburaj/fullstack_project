@@ -23,9 +23,6 @@ const Navigation = () => {
   const teacherNavItems = [
     { path: '/', label: 'Home', icon: Home },
     { path: '/teacher-dashboard', label: 'Dashboard', icon: Calendar },
-    { path: '/courses', label: 'Courses', icon: Book },
-    { path: '/assignments', label: 'Assignments', icon: FileText },
-    { path: '/forums', label: 'Forums', icon: MessageSquare },
     { path: '/profile', label: 'Profile', icon: User },
   ];
 

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { GraduationCap, ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { GraduationCap, ArrowLeft, Eye, EyeOff, User } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
@@ -101,7 +101,7 @@ const TeacherLogin = () => {
           </Link>
           <GraduationCap className="h-12 w-12 mx-auto mb-4 text-green-600" />
           <CardTitle className="text-green-900">Teacher Portal</CardTitle>
-          <CardDescription>Access your teaching dashboard</CardDescription>
+          <CardDescription>Access your teaching dashboard and manage your profile</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleTeacherLogin} className="space-y-4">
@@ -146,6 +146,21 @@ const TeacherLogin = () => {
             >
               Forgot password?
             </Button>
+            
+            {/* Enhanced Profile Section */}
+            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+              <div className="flex items-center space-x-2 mb-2">
+                <User className="h-4 w-4 text-green-600" />
+                <span className="text-sm font-medium text-green-900">Teacher Features</span>
+              </div>
+              <ul className="text-xs text-green-700 space-y-1">
+                <li>• Access your personal dashboard</li>
+                <li>• Manage your teaching profile</li>
+                <li>• Upload course materials and assignments</li>
+                <li>• Track student progress and engagement</li>
+              </ul>
+            </div>
+            
             <div className="text-xs text-green-600 bg-green-50 p-3 rounded-md">
               <strong>Demo Credentials:</strong><br />
               Email: teacher@eduverse.com<br />
