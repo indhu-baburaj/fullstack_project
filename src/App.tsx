@@ -10,6 +10,14 @@ import Courses from "./pages/Courses";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
+import Auth from "./pages/Auth";
+import Blog from "./pages/Blog";
+import Forums from "./pages/Forums";
+import CoursePage from "./pages/CoursePage";
+import AdminDashboard from "./pages/AdminDashboard";
+import Assignments from "./pages/Assignments";
+import Settings from "./pages/Settings";
+import HelpCenter from "./pages/HelpCenter";
 
 const queryClient = new QueryClient();
 
@@ -21,11 +29,17 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="/courses" element={<Layout><Courses /></Layout>} />
+          <Route path="/course/:id" element={<Layout><CoursePage /></Layout>} />
           <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+          <Route path="/admin-dashboard" element={<Layout><AdminDashboard /></Layout>} />
+          <Route path="/assignments" element={<Layout><Assignments /></Layout>} />
+          <Route path="/forums" element={<Layout><Forums /></Layout>} />
           <Route path="/profile" element={<Layout><Profile /></Layout>} />
-          <Route path="/assignments" element={<Layout><div className="text-center py-12"><h1 className="text-3xl font-bold">Assignments</h1><p className="text-gray-600 mt-4">Assignment management system coming soon!</p></div></Layout>} />
-          <Route path="/forums" element={<Layout><div className="text-center py-12"><h1 className="text-3xl font-bold">Discussion Forums</h1><p className="text-gray-600 mt-4">Community forums coming soon!</p></div></Layout>} />
+          <Route path="/settings" element={<Layout><Settings /></Layout>} />
+          <Route path="/blog" element={<Layout><Blog /></Layout>} />
+          <Route path="/help" element={<Layout><HelpCenter /></Layout>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
